@@ -2,7 +2,7 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
 
-export class LoginPageElements {
+export default class LoginPageElements {
     readonly page: Page;
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;

@@ -1,23 +1,24 @@
 // LoginPageActions.ts
+import { Page, Locator } from '@playwright/test';
 import LoginPageElements from './LoginPageElements'; // Import the elements
 
-const loginPage = new LoginPageElements
 
-export class LoginPageActions {
-    login: (username: string, password: string) => Promise<void>;
-    // ... other actions for the login page
-}
+export default class LoginPageActions {
+    private readonly elements: LoginPageElements;
+    private readonly page: Page;
 
-class LoginPageActions implements LoginPageActions {
-    constructor(private readonly elements: loginPage, private readonly page: any) { } // Inject elements and page
+    constructor(page: Page) {
+        this.page = page;
+        this.elements = new LoginPageElements(page);
+    }
 
     async login(username: string, password: string): Promise<void> {
-        await this.elements.usernameInput(this.page).fill(username);
-        await this.elements.passwordInput(this.page).fill(password);
-        await this.elements.submitButton(this.page).click();
+        await this.elements.usernameInput.fill(username);
+        await this.elements.passwordInput.fill(password);
+        await this.elements.submitButton.click();
     }
+
 
     // ... other action methods using the injected elements and page
 }
 
-export default LoginPageActions;
