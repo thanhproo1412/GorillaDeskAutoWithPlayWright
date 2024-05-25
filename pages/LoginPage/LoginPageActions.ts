@@ -16,6 +16,7 @@ export default class LoginPageActions {
         await this.elements.usernameInput.fill(username);
         await this.elements.passwordInput.fill(password);
         await this.elements.submitButton.click();
+        await this.page.waitForNavigation({ waitUntil: "load" })
     }
 
 
